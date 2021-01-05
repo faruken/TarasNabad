@@ -7,7 +7,7 @@ pub trait TarasNabadImpl {
     fn list(&self);
     fn put(&mut self, value: String) -> Uuid;
     fn get(&self, key: &Uuid) -> Result<Option<Vec<u8>>, Error>;
-    // fn delete(&self, key: u64);
+    fn delete(&self, key: &Uuid) -> Result<(), Error>;
 }
 
 
@@ -53,7 +53,7 @@ impl TarasNabadImpl for TarasNabad {
         return self.db.get(key.as_bytes());
     }
 
-    // fn delete(&self, key: u64) {
-    //     self.db.delete(key);
-    // }
+    fn delete(&self, key: &Uuid) -> Result<(), Error> {
+        return self.db.delete(key.as_bytes());
+    }
 }
